@@ -66,6 +66,16 @@ function my_theme_register_required_plugins() {
 			'slug'      => 'woocommerce',
 			'required'  => false,
 		),
+		array(
+			'name'      => 'YITH WooCommerce Compare',
+			'slug'      => 'yith-woocommerce-compare',
+			'required'  => false,
+		),
+		array(
+			'name'      => 'YITH WooCommerce Wishlist',
+			'slug'      => 'yith-woocommerce-wishlist',
+			'required'  => false,
+		),
 
 
 	);
