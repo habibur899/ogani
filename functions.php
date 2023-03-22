@@ -165,3 +165,4 @@ require get_template_directory() . '/inc/class-wp-bootstrap-navwalker.php';
 require get_template_directory() . '/inc/tgm/tgm.php';
 require get_template_directory() . '/inc/woocommerce-helper/woocommerce-function.php';
 require get_template_directory() . '/inc/woocommerce-helper/woocommerce-sale-badge-percent.php';
+require get_template_directory() . '/inc/woocommerce-helper/plus-minus-quentity.php';

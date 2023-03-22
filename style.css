@@ -147,10 +147,19 @@ input[type="number"] {
 .product__details__tab .nav-tabs::before {
     width: 300px;
 }
+.woocommerce div.product .woocommerce-tabs ul.tabs::before {
+    width: 300px;
+}
 .product__details__tab .nav-tabs li.active a {
     color: #222;
 }
-
+.woocommerce div.product .woocommerce-tabs ul.tabs li.active {
+    color: #222!important;
+}
+.woocommerce div.product .woocommerce-tabs ul.tabs li {
+    border: none;
+    background-color: transparent!important;
+}
 .product__details__tab .nav-tabs h2 {
     color: #2222;
     font-size: 16px !important;
