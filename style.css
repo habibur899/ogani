@@ -209,6 +209,17 @@ input[type="number"] {
     font-size: 20px;
     font-size: 500;
 }
+.quantity button {
+    border: none;
+    background-color: #f5f5f5;
+    padding: 10px 20px;
+}
+.quantity input{
+    border: none;
+    background-color: #f5f5f5;
+    margin-top: -3px!important;
+}
+
 .shop_table.shop_table_responsive.cart.woocommerce-cart-form__contents tr {
     margin-bottom: 37px !important;
 }
