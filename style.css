@@ -15,7 +15,9 @@ Tags: custom-background, custom-logo, custom-menu, featured-images, threaded-com
 
 */
 
-
+a:hover {
+    color: #000000;
+}
 .product__item__text h5 del {
     font-weight: normal;
     font-size: 16px;

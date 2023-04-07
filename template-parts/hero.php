@@ -9,17 +9,20 @@
 						<span>All departments</span>
 					</div>
 					<ul>
-						<li><a href="#">Fresh Meat</a></li>
-						<li><a href="#">Vegetables</a></li>
-						<li><a href="#">Fruit & Nut Gifts</a></li>
-						<li><a href="#">Fresh Berries</a></li>
-						<li><a href="#">Ocean Foods</a></li>
-						<li><a href="#">Butter & Eggs</a></li>
-						<li><a href="#">Fastfood</a></li>
-						<li><a href="#">Fresh Onion</a></li>
-						<li><a href="#">Papayaya & Crisps</a></li>
-						<li><a href="#">Oatmeal</a></li>
-						<li><a href="#">Fresh Bananas</a></li>
+						<?php
+						$args = array(
+							'taxonomy'   => 'product_cat',
+							'hide_empty' => true,
+						);
+						$cats = get_categories( $args );
+						foreach ( $cats as $cat ) {
+							?>
+							<li><a href="<?php echo get_category_link( $cat->term_id ) ?>"><?php echo $cat->name ?></a>
+							</li>
+							<?php
+						}
+						?>
+
 					</ul>
 				</div>
 			</div>
@@ -36,23 +39,48 @@
 						</form>
 					</div>
 					<div class="hero__search__phone">
-						<div class="hero__search__phone__icon">
-							<i class="fa fa-phone"></i>
-						</div>
+
+						<?php
+						$header_phone = get_field( 'phone', 'option' );
+						if ( $header_phone ) {
+							echo '<div class="hero__search__phone__icon"><i class="fa fa-phone"></i></div>';
+						}
+						?>
+
+
 						<div class="hero__search__phone__text">
-							<h5>+65 11.188.888</h5>
-							<span>support 24/7 time</span>
+							<h5><?php
+								$header_phone = get_field( 'phone', 'option' );
+								if ( $header_phone ) {
+									echo $header_phone;
+								}
+								?></h5>
+							<span><?php
+								$header_phone_subtitle = get_field( 'phone_subtitle', 'option' );
+								if ( $header_phone_subtitle ) {
+									echo $header_phone_subtitle;
+								}
+								?></span>
 						</div>
 					</div>
 				</div>
-				<div class="hero__item set-bg" data-setbg="<?php echo get_template_directory_uri()?>/img/hero/banner.jpg">
-					<div class="hero__text">
-						<span>FRUIT FRESH</span>
-						<h2>Vegetable <br/>100% Organic</h2>
-						<p>Free Pickup and Delivery Available</p>
-						<a href="#" class="primary-btn">SHOP NOW</a>
+				<?php
+				$banner = get_field( 'banner', 'option' );
+				if ( $banner ):
+					?>
+					<div class="hero__item set-bg"
+					     data-setbg="<?php echo esc_url( $banner['banner_background'] ) ?>">
+						<div class="hero__text">
+							<span><?php echo esc_html( $banner['banner_subtitle'] ) ?></span>
+							<h2><?php echo wp_kses_post( $banner['banner_title'] ) ?></h2>
+							<p><?php echo esc_html( $banner['banner_description'] ) ?></p>
+							<a href="<?php echo esc_url( $banner['link'] ) ?>"
+							   class="primary-btn"><?php echo esc_html( $banner['button_text'] ) ?></a>
+						</div>
 					</div>
-				</div>
+				<?php
+				endif;
+				?>
 			</div>
 		</div>
 	</div>
