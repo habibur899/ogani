@@ -17,7 +17,16 @@ function my_acf_op_init() {
 			'page_title'  => __( 'Herader' ),
 			'menu_title'  => __( 'Herader' ),
 			'parent_slug' => $parent['menu_slug'],
-		) );// Add sub page.
+		) );
+
+		// Add sub page.
+		$child = acf_add_options_page( array(
+			'page_title'  => __( 'Ads' ),
+			'menu_title'  => __( 'Ads' ),
+			'parent_slug' => $parent['menu_slug'],
+		) );
+
+		// Add sub page.
 		$child = acf_add_options_page( array(
 			'page_title'  => __( 'Footer' ),
 			'menu_title'  => __( 'Footer' ),
