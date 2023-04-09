@@ -46,143 +46,51 @@ global $product;
 					<div class="featured__controls">
 						<ul>
 							<li class="active" data-filter="*">All</li>
-							<li data-filter=".oranges">Oranges</li>
-							<li data-filter=".fresh-meat">Fresh Meat</li>
-							<li data-filter=".vegetables">Vegetables</li>
-							<li data-filter=".fastfood">Fastfood</li>
+							<?php $catTerms = get_terms( 'product_cat', array(
+								'hide_empty' => 0,
+								'orderby'    => 'ASC',
+								'exclude'    => '16'
+							) );
+							foreach ( $catTerms as $catTerm ) :
+								$cat_slug = $catTerm->slug;
+								$cat_name   = $catTerm->name;
+								?>
+								<li data-filter=".<?php echo esc_attr( $cat_slug ) ?>"><?php echo esc_html( $cat_name ) ?></li>
+							<?php endforeach; ?>
 						</ul>
 					</div>
 				</div>
 			</div>
 			<div class="row featured__filter">
-				<div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
-					<div class="featured__item">
-						<div class="featured__item__pic set-bg"
-						     data-setbg="<?php echo get_template_directory_uri() ?>/img/featured/feature-1.jpg">
-							<ul class="featured__item__pic__hover">
-								<li><a href="#"><i class="fa fa-heart"></i></a></li>
-								<li><a href="#"><i class="fa fa-retweet"></i></a></li>
-								<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-							</ul>
+
+
+				<?php
+				$args      = array(
+					'post_type'      => 'product',
+					'post_status'    => 'publish',
+					'posts_per_page' => 8,
+				);
+				$the_query = new WP_Query( $args );
+				if ( $the_query->have_posts() ) {
+					while ( $the_query->have_posts() ) : $the_query->the_post();
+						$catTerms = get_the_terms( $post->ID, 'product_cat', );
+						foreach ( $catTerms as $catTerm ) {
+							$cat_slug = $catTerm->slug;
+						}
+
+						?>
+						<div class="col-lg-3 col-md-4 col-sm-6 mix <?php echo $cat_slug ?>">
+							<?php wc_get_template_part( 'content', 'product' ); ?>
 						</div>
-						<div class="featured__item__text">
-							<h6><a href="#">Crab Pool Security</a></h6>
-							<h5>$30.00</h5>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-4 col-sm-6 mix vegetables fastfood">
-					<div class="featured__item">
-						<div class="featured__item__pic set-bg"
-						     data-setbg="<?php echo get_template_directory_uri() ?>/img/featured/feature-2.jpg">
-							<ul class="featured__item__pic__hover">
-								<li><a href="#"><i class="fa fa-heart"></i></a></li>
-								<li><a href="#"><i class="fa fa-retweet"></i></a></li>
-								<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-							</ul>
-						</div>
-						<div class="featured__item__text">
-							<h6><a href="#">Crab Pool Security</a></h6>
-							<h5>$30.00</h5>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-4 col-sm-6 mix vegetables fresh-meat">
-					<div class="featured__item">
-						<div class="featured__item__pic set-bg"
-						     data-setbg="<?php echo get_template_directory_uri() ?>/img/featured/feature-3.jpg">
-							<ul class="featured__item__pic__hover">
-								<li><a href="#"><i class="fa fa-heart"></i></a></li>
-								<li><a href="#"><i class="fa fa-retweet"></i></a></li>
-								<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-							</ul>
-						</div>
-						<div class="featured__item__text">
-							<h6><a href="#">Crab Pool Security</a></h6>
-							<h5>$30.00</h5>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-4 col-sm-6 mix fastfood oranges">
-					<div class="featured__item">
-						<div class="featured__item__pic set-bg"
-						     data-setbg="<?php echo get_template_directory_uri() ?>/img/featured/feature-4.jpg">
-							<ul class="featured__item__pic__hover">
-								<li><a href="#"><i class="fa fa-heart"></i></a></li>
-								<li><a href="#"><i class="fa fa-retweet"></i></a></li>
-								<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-							</ul>
-						</div>
-						<div class="featured__item__text">
-							<h6><a href="#">Crab Pool Security</a></h6>
-							<h5>$30.00</h5>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-4 col-sm-6 mix fresh-meat vegetables">
-					<div class="featured__item">
-						<div class="featured__item__pic set-bg"
-						     data-setbg="<?php echo get_template_directory_uri() ?>/img/featured/feature-5.jpg">
-							<ul class="featured__item__pic__hover">
-								<li><a href="#"><i class="fa fa-heart"></i></a></li>
-								<li><a href="#"><i class="fa fa-retweet"></i></a></li>
-								<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-							</ul>
-						</div>
-						<div class="featured__item__text">
-							<h6><a href="#">Crab Pool Security</a></h6>
-							<h5>$30.00</h5>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-4 col-sm-6 mix oranges fastfood">
-					<div class="featured__item">
-						<div class="featured__item__pic set-bg"
-						     data-setbg="<?php echo get_template_directory_uri() ?>/img/featured/feature-6.jpg">
-							<ul class="featured__item__pic__hover">
-								<li><a href="#"><i class="fa fa-heart"></i></a></li>
-								<li><a href="#"><i class="fa fa-retweet"></i></a></li>
-								<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-							</ul>
-						</div>
-						<div class="featured__item__text">
-							<h6><a href="#">Crab Pool Security</a></h6>
-							<h5>$30.00</h5>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-4 col-sm-6 mix fresh-meat vegetables">
-					<div class="featured__item">
-						<div class="featured__item__pic set-bg"
-						     data-setbg="<?php echo get_template_directory_uri() ?>/img/featured/feature-7.jpg">
-							<ul class="featured__item__pic__hover">
-								<li><a href="#"><i class="fa fa-heart"></i></a></li>
-								<li><a href="#"><i class="fa fa-retweet"></i></a></li>
-								<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-							</ul>
-						</div>
-						<div class="featured__item__text">
-							<h6><a href="#">Crab Pool Security</a></h6>
-							<h5>$30.00</h5>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-4 col-sm-6 mix fastfood vegetables">
-					<div class="featured__item">
-						<div class="featured__item__pic set-bg"
-						     data-setbg="<?php echo get_template_directory_uri() ?>/img/featured/feature-8.jpg">
-							<ul class="featured__item__pic__hover">
-								<li><a href="#"><i class="fa fa-heart"></i></a></li>
-								<li><a href="#"><i class="fa fa-retweet"></i></a></li>
-								<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-							</ul>
-						</div>
-						<div class="featured__item__text">
-							<h6><a href="#">Crab Pool Security</a></h6>
-							<h5>$30.00</h5>
-						</div>
-					</div>
-				</div>
+					<?php
+					endwhile;
+				} else {
+					echo __( 'No products found' );
+				}
+				wp_reset_postdata();
+				?>
+
+
 			</div>
 		</div>
 	</section>
@@ -463,8 +371,10 @@ global $product;
 								</div>
 								<div class="blog__item__text">
 									<ul>
-										<li><i class="fa fa-calendar-o"></i><?php echo get_the_date()?></li>
-										<li><i class="fa fa-comment-o"></i> <?php comments_popup_link( __( 'Leave a comment', 'ogani' ), __( '1 Comment', 'ogani' ), __( '% Comments', 'ogani' ) ); ?></li>
+										<li><i class="fa fa-calendar-o"></i><?php echo get_the_date() ?></li>
+										<li>
+											<i class="fa fa-comment-o"></i> <?php comments_popup_link( __( 'Leave a comment', 'ogani' ), __( '1 Comment', 'ogani' ), __( '% Comments', 'ogani' ) ); ?>
+										</li>
 									</ul>
 									<h5><a href="<?php the_permalink(); ?>"><?php the_title() ?></a></h5>
 									<p><?php echo wp_trim_words( get_the_content(), 15, ' ' ) ?></p>
