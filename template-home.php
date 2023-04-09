@@ -359,7 +359,7 @@ global $product;
 				if ( have_posts() ) {
 					$args = array(
 						'post_type'     => 'post',
-						'post_per_page' => 3
+						'posts_per_page' => 3
 					);
 					$blog = new WP_Query( $args );
 					while ( $blog->have_posts() ) {

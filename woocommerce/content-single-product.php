@@ -23,102 +23,112 @@ global $product;
 ?>
 <!-- Breadcrumb Section Begin -->
 <section class="breadcrumb-section set-bg" data-setbg="<?php echo get_template_directory_uri() ?>/img/breadcrumb.jpg">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <div class="breadcrumb__text">
-                    <h2><?php the_title() ?></h2>
-                    <div class="breadcrumb__option">
-                        <a href="<?php echo site_url() ?>"><?php _e( 'Home', 'ogani' ); ?></a>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12 text-center">
+				<div class="breadcrumb__text">
+					<h2><?php the_title() ?></h2>
+					<div class="breadcrumb__option">
+						<a href="<?php echo site_url() ?>"><?php _e( 'Home', 'ogani' ); ?></a>
 						<?php
 						$product_cat = $product->get_categories();
 						echo $product_cat;
 						?>
-                        <span><?php the_title() ?></span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+						<span><?php the_title() ?></span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </section>
 <!-- Breadcrumb Section End -->
 <div class="container">
-    <div class="row">
-        <div class="col-xl-12">
-	        <?php
-	        /**
-	         * Hook: woocommerce_before_single_product.
-	         *
-	         * @hooked woocommerce_output_all_notices - 10
-	         */
-	        do_action( 'woocommerce_before_single_product' );
+	<div class="row">
+		<div class="col-xl-12">
+			<?php
+			/**
+			 * Hook: woocommerce_before_single_product.
+			 *
+			 * @hooked woocommerce_output_all_notices - 10
+			 */
+			do_action( 'woocommerce_before_single_product' );
 
-	        if ( post_password_required() ) {
-		        echo get_the_password_form(); // WPCS: XSS ok.
+			if ( post_password_required() ) {
+				echo get_the_password_form(); // WPCS: XSS ok.
 
-		        return;
-	        }
-            ?>
-        </div>
-    </div>
+				return;
+			}
+			?>
+		</div>
+	</div>
 </div>
 <!-- Product Details Section Begin -->
 <section class="product-details spad">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6 col-md-6">
-                <div class="product__details__pic">
-                    <div class="product__details__pic__item">
-	                    <?php woocommerce_show_product_sale_flash()?>
-	                    <?php woocommerce_show_product_images()?>
-                    </div>
-                    <div class="product__details__pic__slider owl-carousel">
-                        <img data-imgbigurl="img/product/details/product-details-2.jpg"
-                             src="img/product/details/thumb-1.jpg" alt="">
-                        <img data-imgbigurl="img/product/details/product-details-3.jpg"
-                             src="img/product/details/thumb-2.jpg" alt="">
-                        <img data-imgbigurl="img/product/details/product-details-5.jpg"
-                             src="img/product/details/thumb-3.jpg" alt="">
-                        <img data-imgbigurl="img/product/details/product-details-4.jpg"
-                             src="img/product/details/thumb-4.jpg" alt="">
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6 col-md-6">
-                <div class="product__details__text">
-                    <?php woocommerce_template_single_title()?>
-                    <div class="product__details__rating">
-	                    <?php woocommerce_template_single_rating()?>
-                    </div>
-                    <?php woocommerce_template_single_price();?>
-                    <?php woocommerce_template_single_excerpt()?>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-6 col-md-6">
+				<div class="product__details__pic">
+					<div class="product__details__pic__item">
+						<?php woocommerce_show_product_sale_flash() ?>
+						<img class="product__details__pic__item--large" src="<?php echo wp_get_attachment_url( $product->get_image_id() ); ?>" />
+					</div>
 
-                    <?php woocommerce_template_single_add_to_cart()?>
-                    <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
-                    <ul>
-                        <li><b>Availability</b> <span><?php echo $product->get_stock_quantity()?></span></li>
-                        <li><b>Shipping</b> <span>01 day shipping. <samp>Free pickup today</samp></span></li>
-                        <li><b>Weight</b> <span>0.5 kg</span></li>
-                        <li><b>Share on</b>
+					<div class="product__details__pic__slider owl-carousel">
+						<?php
 
-                            <div class="share">
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                                <a href="#"><i class="fa fa-twitter"></i></a>
-                                <a href="#"><i class="fa fa-instagram"></i></a>
-                                <a href="#"><i class="fa fa-pinterest"></i></a>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+						$attachment_ids = $product->get_gallery_image_ids();
 
-        </div>
-    </div>
+						foreach ( $attachment_ids as $attachment_id ) {
+							$image_link = wp_get_attachment_url( $attachment_id );
+							?>
+							<img src="<?php echo esc_url( $image_link ); ?>"
+							     data-imgbigurl="<?php echo esc_url( $image_link ); ?>" alt="">
+							<?php
+						}
+						?>
+
+
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-6 col-md-6">
+				<div class="product__details__text">
+					<?php woocommerce_template_single_title() ?>
+					<div class="product__details__rating">
+						<?php woocommerce_template_single_rating() ?>
+					</div>
+					<?php woocommerce_template_single_price(); ?>
+					<?php woocommerce_template_single_excerpt() ?>
+
+					<?php woocommerce_template_single_add_to_cart() ?>
+					<a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
+					<ul>
+						<li><b>Availability</b> <span><?php echo $product->get_stock_quantity() ?></span></li>
+						<li><b>Shipping</b> <span>01 day shipping. <samp>Free pickup today</samp></span></li>
+						<li><b>Weight</b> <span><?php echo $product->get_weight();?> <?php echo get_option('woocommerce_weight_unit');?></span></li>
+						<li><b>Share on</b>
+
+							<div class="share">
+
+								<a href="https://www.facebook.com/sharer/sharer.php?u=<?= get_permalink(); ?>" title="Share on Facebook" target="_blank"><i class="fab fa-facebook-f"></i></a>
+
+								<a href="https://www.twitter.com/share?url=<?= get_permalink(); ?>&text=<?= get_the_title(); ?>" title="Share on Twitter" target="_blank"><i class="fab fa-twitter"></i></a>
+
+								<a href="https://www.linkedin.com/shareArticle?mini=true&url=<?= get_permalink(); ?>" title="Share on Linkedin" target="_blank"><i class="fab fa-linkedin"></i></a>
+
+								<a href="mailto:?subject=<?= get_the_title(); ?> - <?= site_url(); ?>&body=I found this post on <?= site_url(); ?> and thought it would interest you.%0D%0A%0D%0A<?= get_the_title(); ?>%0D%0A<?= get_permalink(); ?>" title="Send to an E-mail" target="_blank"><i class="fa fa-envelope"></i></i>
+								</a>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+		</div>
+	</div>
 </section>
 <!-- Product Details Section End -->
 <div id="product-<?php the_ID(); ?>" <?php wc_product_class( '', $product ); ?>>
-
-
 
 
 	<?php

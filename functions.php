@@ -113,7 +113,7 @@ function ogani_widgets_init() {
 	register_sidebar(
 		array(
 			'name'          => esc_html__( 'Blog Sidebar', 'ogani' ),
-			'id'            => 'blog-sidebar',
+			'id'            => 'woo-sidebar',
 			'description'   => esc_html__( 'Add blog sidebar widgets here.', 'ogani' ),
 			'before_widget' => '<div id="%1$s" class="blog__sidebar__item widget %2$s">',
 			'after_widget'  => '</div>',
@@ -133,6 +133,16 @@ function ogani_widgets_init() {
 			'after_title'   => '</h6>',
 		)
 	);
+
+	register_sidebar( array(
+		'name'          => __( 'Woocommerce Widget', 'organi' ),
+		'id'            => 'woocommerce-sidebar',
+		'description'   => __( 'Widgets in this area will be shown on all posts and pages.', 'organi' ),
+		'before_widget' => '<ul id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</ul>',
+		'before_title'  => '<h6>',
+		'after_title'   => '</h6>',
+	) );
 }
 
 add_action( 'widgets_init', 'ogani_widgets_init' );

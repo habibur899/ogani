@@ -47,7 +47,8 @@ get_header( 'shop' );
 					 *
 					 * @hooked woocommerce_get_sidebar - 10
 					 */
-					do_action( 'woocommerce_sidebar' ); ?>
+					do_action( 'woocommerce_sidebar' );
+					?>
                 </div>
                 <div class="col-lg-9 col-md-7">
                     <div class="product__discount">
