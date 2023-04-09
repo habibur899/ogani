@@ -1,79 +1,90 @@
-
 <!-- Footer Section Begin -->
 <footer class="footer spad">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-3 col-md-6 col-sm-6">
-                <div class="footer__about">
-                    <div class="footer__about__logo">
-                        <a href="./index.html"><img src="<?php echo get_template_directory_uri()?>/img/logo.png" alt=""></a>
-                    </div>
-                    <ul>
-                        <li>Address: 60-49 Road 11378 New York</li>
-                        <li>Phone: +65 11.188.888</li>
-                        <li>Email: hello@colorlib.com</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 col-sm-6 offset-lg-1">
-                <div class="footer__widget">
-                    <h6>Useful Links</h6>
-                    <ul>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">About Our Shop</a></li>
-                        <li><a href="#">Secure Shopping</a></li>
-                        <li><a href="#">Delivery infomation</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Our Sitemap</a></li>
-                    </ul>
-                    <ul>
-                        <li><a href="#">Who We Are</a></li>
-                        <li><a href="#">Our Services</a></li>
-                        <li><a href="#">Projects</a></li>
-                        <li><a href="#">Contact</a></li>
-                        <li><a href="#">Innovation</a></li>
-                        <li><a href="#">Testimonials</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-12">
-                <div class="footer__widget">
-                    <h6>Join Our Newsletter Now</h6>
-                    <p>Get E-mail updates about our latest shop and special offers.</p>
-                    <form action="#">
-                        <input type="text" placeholder="Enter your mail">
-                        <button type="submit" class="site-btn">Subscribe</button>
-                    </form>
-                    <div class="footer__widget__social">
-                        <a href="#"><i class="fa fa-facebook"></i></a>
-                        <a href="#"><i class="fa fa-instagram"></i></a>
-                        <a href="#"><i class="fa fa-twitter"></i></a>
-                        <a href="#"><i class="fa fa-pinterest"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="footer__copyright">
-                    <div class="footer__copyright__text">
-                        <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                            Copyright &copy;<script>document.write(new Date().getFullYear());</script>
-                            All rights reserved | This template is made with <i class="fa fa-heart"
-                                                                                aria-hidden="true"></i> by <a
-                                    href="https://colorlib.com" target="_blank">Colorlib</a>
-                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
-                    </div>
-                    <div class="footer__copyright__payment"><img src="<?php echo get_template_directory_uri()?>/img/payment-item.png" alt=""></div>
-                </div>
-            </div>
-        </div>
-    </div>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-3 col-md-6 col-sm-6">
+				<div class="footer__about">
+					<div class="footer__about__logo">
+						<a href="<?php echo esc_url( site_url() ) ?>"><img
+								src="<?php $footer_logo = get_field( 'footer_logo', 'option' );
+								if ( $footer_logo ) {
+									echo esc_url( $footer_logo );
+								} ?>" alt=""></a>
+					</div>
+					<ul>
+						<li><?php $footer_address = get_field( 'footer_address', 'option' );
+							if ( $footer_address ) {
+								echo esc_html( $footer_address );
+							} ?></li>
+						<li><?php $footer_phone = get_field( 'footer_phone', 'option' );
+							if ( $footer_phone ) {
+								echo esc_html( $footer_phone );
+							} ?></li>
+						<li><?php $footer_email = get_field( 'footer_email', 'option' );
+							if ( $footer_email ) {
+								echo esc_html( $footer_email );
+							} ?></li>
+					</ul>
+				</div>
+			</div>
+			<div class="col-lg-4 col-md-6 col-sm-6 offset-lg-1">
+				<?php
+				if ( is_active_sidebar( 'footer-widget' ) ) {
+					dynamic_sidebar( 'footer-widget' );
+				}
+				?>
+
+			</div>
+			<div class="col-lg-4 col-md-12">
+				<div class="footer__widget">
+					<h6><?php $footer_newslater_title = get_field( 'newslater_title', 'option' );
+						if ( $footer_newslater_title ) {
+							echo esc_html( $footer_newslater_title );
+						} ?></h6>
+					<p><?php $footer_newslater_descriptione = get_field( 'newslater_description', 'option' );
+						if ( $footer_newslater_descriptione ) {
+							echo esc_html( $footer_newslater_descriptione );
+						} ?></p>
+					<?php echo do_shortcode( '[contact-form-7 id="334" title="Newslater"]' ) ?>
+					<div class="footer__widget__social">
+						<?php
+						$footer_socials = get_field( 'footer_social', 'option' );
+						if ( $footer_socials ) {
+							foreach ( $footer_socials as $footer_social ) {
+								?>
+								<a href="<?php echo esc_url( $footer_social['footer_social_url'] ) ?>"><i
+										class="<?php echo esc_attr( $footer_social['footer_social_icon'] ) ?>"></i></a>
+								<?php
+							}
+						}
+						?>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="footer__copyright">
+					<div class="footer__copyright__text">
+						<p><?php $footer_copyright = get_field( 'footer_copyright', 'option' );
+							if ( $footer_copyright ) {
+								echo wp_kses_post( $footer_copyright );
+							} ?></p>
+					</div>
+					<div class="footer__copyright__payment"><img
+							src="<?php $footer_copyright_image = get_field( 'footer_payment_image', 'option' );
+							if ( $footer_copyright_image ) {
+								echo $footer_copyright_image;
+							} ?>" alt=""></div>
+				</div>
+			</div>
+		</div>
+	</div>
 </footer>
 <!-- Footer Section End -->
 
 
-<?php wp_footer();?>
+<?php wp_footer(); ?>
 </body>
 
 </html>

@@ -112,13 +112,13 @@ add_action( 'after_setup_theme', 'ogani_setup' );
 function ogani_widgets_init() {
 	register_sidebar(
 		array(
-			'name'          => esc_html__( 'Sidebar', 'ogani' ),
-			'id'            => 'sidebar-1',
-			'description'   => esc_html__( 'Add widgets here.', 'ogani' ),
-			'before_widget' => '<section id="%1$s" class="widget %2$s">',
-			'after_widget'  => '</section>',
-			'before_title'  => '<h2 class="widget-title">',
-			'after_title'   => '</h2>',
+			'name'          => esc_html__( 'Footer Widget', 'ogani' ),
+			'id'            => 'footer-widget',
+			'description'   => esc_html__( 'Add footer widgets here.', 'ogani' ),
+			'before_widget' => '<div id="%1$s" class="footer__widget widget %2$s">',
+			'after_widget'  => '</div>',
+			'before_title'  => '<h6 class="widget-title">',
+			'after_title'   => '</h6>',
 		)
 	);
 }

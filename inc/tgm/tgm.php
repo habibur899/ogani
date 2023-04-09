@@ -79,6 +79,10 @@ function my_theme_register_required_plugins() {
 			'name'      => 'Advanced Custom Fields: Font Awesome Field',
 			'slug'      => 'advanced-custom-fields-font-awesome',
 			'required'  => false,
+		),array(
+			'name'      => 'Contact Form 7',
+			'slug'      => 'contact-form-7',
+			'required'  => false,
 		),
 		array(
 			'name'               => 'Advanced Custom Fields Pro',
