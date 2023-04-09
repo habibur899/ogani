@@ -112,6 +112,18 @@ add_action( 'after_setup_theme', 'ogani_setup' );
 function ogani_widgets_init() {
 	register_sidebar(
 		array(
+			'name'          => esc_html__( 'Blog Sidebar', 'ogani' ),
+			'id'            => 'blog-sidebar',
+			'description'   => esc_html__( 'Add blog sidebar widgets here.', 'ogani' ),
+			'before_widget' => '<div id="%1$s" class="blog__sidebar__item widget %2$s">',
+			'after_widget'  => '</div>',
+			'before_title'  => '<h6 class="widget-title">',
+			'after_title'   => '</h6>',
+		)
+	);
+
+	register_sidebar(
+		array(
 			'name'          => esc_html__( 'Footer Widget', 'ogani' ),
 			'id'            => 'footer-widget',
 			'description'   => esc_html__( 'Add footer widgets here.', 'ogani' ),

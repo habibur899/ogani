@@ -45,7 +45,12 @@
 						if ( $footer_newslater_descriptione ) {
 							echo esc_html( $footer_newslater_descriptione );
 						} ?></p>
-					<?php echo do_shortcode( '[contact-form-7 id="334" title="Newslater"]' ) ?>
+					<?php
+					$newslater_form_field = get_field( 'newslater_shortcode', 'option' );
+					if ( $newslater_form_field ) {
+						echo do_shortcode( $newslater_form_field );
+					}
+					?>
 					<div class="footer__widget__social">
 						<?php
 						$footer_socials = get_field( 'footer_social', 'option' );

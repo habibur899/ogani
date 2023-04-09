@@ -28,6 +28,13 @@ function my_acf_op_init() {
 
 		// Add sub page.
 		$child = acf_add_options_page( array(
+			'page_title'  => __( 'Contact' ),
+			'menu_title'  => __( 'Contact' ),
+			'parent_slug' => $parent['menu_slug'],
+		) );
+
+		// Add sub page.
+		$child = acf_add_options_page( array(
 			'page_title'  => __( 'Footer' ),
 			'menu_title'  => __( 'Footer' ),
 			'parent_slug' => $parent['menu_slug'],
